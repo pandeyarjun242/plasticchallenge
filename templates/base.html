@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  {% load staticfiles %}
+  <meta charset="utf-8">
+  <title> Plastic Challenge</title>
+</head>
+
+<link href="https://fonts.googleapis.com/css?family=Gelasio&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Muli&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<body>
+  <style>
+  strong{
+    color: white !important;
+  }
+  .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+      #footer{
+        position: ;
+        bottom: 0;
+        width: 100vw;
+      }
+
+h1,p{
+  color:black;
+}
+  *{
+    font-family: 'Gelasio', serif;
+    color: black;
+  }
+  .text-white{
+    color: white !important;
+  }
+  p,h1,li,span,a{
+    opacity:0.9;
+    color:white;
+  }
+
+  .istems{
+    display: flex !important;
+    justify-content: space-between !important;
+    align-content: space-between !important;
+    align-items: space-between !important;
+  }
+  .layout{
+    display: flex;
+    justify-content: space-between;
+    align-items: center !important;
+    align-content: center !important;
+  }
+  .layout-icons{
+    display: flex;
+    /* align-items: center; */
+  }
+  i{
+    margin-right: 10px;
+    font-size: 20px;
+    color:white !important;
+  }
+  </style>
+  <header>
+    <div class="collapse bg-dark" id="navbarHeader">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-8 col-md-7 py-4">
+            <h4 class="text-white">About</h4>
+            <p class="text-white">Plastic is one of the most eminent global threats today, Lets start reducing it by playing our own individual parts. This application helps you visualize how you are affecting the enviornment with your plastic intake.</p>
+          </div>
+          <div class="col-sm-4 offset-md-1 py-4">
+            <h4 class="text-white">Play your Part</h4>
+            <ul class="list-unstyled">
+              {% if user.is_authenticated %}
+              <li><a href="{% url 'dashboard'%}" class="text-white">Dashboard</a></li>
+              <a href="javascript:{document.getElementById('logout').submit()}" class="text-white"><li>Logout</li></a>
+              <li><a href="mail" class="text-white">Contact Us</a></li>
+              <form id = "logout" method="POST" action=" {% url 'logout'%} ">
+                {% csrf_token %}
+                <input type="hidden">
+              </form>
+              {% else %}
+              <li><a href="{% url 'signup' %}" class="text-white">SignUp</a></li>
+              <li><a href="{% url 'login' %}" class="text-white">Login</a></li>
+              <li><a href="#" class="text-white">Contact Us</a></li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="navbar navbar-dark bg-dark shadow-sm">
+      <div class="container d-flex justify-content-between">
+        {% if user.is_authenticated %}
+        <a href="{% url 'home' %}" class="navbar-brand d-flex align-items-center">
+          <strong>Go Checkout Your Dashboard  <i class="fa fa-arrow-right"></i> </strong>
+        </a>
+        {% else %}
+        <a href="{% url 'home' %}" class="navbar-brand d-flex align-items-center">
+          <strong>The Plastic Challenge!</strong>
+        </a>
+        {% endif %}
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+{% block content %}
+
+{% endblock %}
+
+
+<footer class="footer mt-auto py-3 bg-dark" id="footer">
+  <div class="container layout">
+    <div class="">
+      <p>&copy Arjun Pandey {% now "Y"%}</p>
+    </div>
+
+    <div class="layout-icons">
+      <span> <i class="fa fa-facebook-square fa-2x"></i> </span>
+      <span> <i class="fa fa-instagram fa-2x"></i> </span>
+      <span> <i class="fa fa-snapchat-square fa-2x"></i> </span>
+    </div>
+  </div>
+</footer>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</html>

@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+#new{
+  color:black !important;
+}
+body{
+  overflow:
+}
+footer{
+  width:100vw !important;
+}
+.pricing-header {
+  max-width: 700px;
+}
+
+.card-deck .card {
+  min-width: 220px;
+}
+li{
+  color:black;
+}
+h1{
+  color:black;
+}
+.next{
+  width:10vw;
+  margin-left:33vw;
+  margin-bottom:25px;
+}
+footer{
+  position:fixed;
+  bottom:0;
+}
+</style>
+<br>
+<h2 class="text-center">How can you save on your Kitchen Habits?</h2>
+<br><br>
+
+<div class="container">
+
+  <div class="card-deck mb-3 text-center">
+    {% for items, values in foodObj.items %}
+    <div class="card mb-4 shadow-sm">
+      <div class="card-header">
+        <h4 class="my-0 font-weight-normal">{{values.0}}</h4>
+      </div>
+      <div class="card-body">
+        <h1 class="card-title pricing-card-title">{{values.3}} <small class="text-muted">KGs /Year</small></h1>
+        <ul class="list-unstyled mt-3 mb-4" id="new">
+          <li>
+            {{values.2}}
+          </li>
+          <br>
+            {% if values.1 == 'yes' %}
+          <li><a href="javascript:{document.getElementById('remove').submit()}"><input type="button" name="remove" value="Pledge to Reduce" class="btn btn-primary"></a>
+          <form class="" action="{% url 'remove' %}" method="POST" id="remove">
+          {% csrf_token %}
+            <input type="hidden" name="remove" value="{{items}}">
+          </form>
+          {% else %}
+          <li> Keep It Up!</li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <a href="javascript:{document.getElementById('bathroom').submit()}" class="btn btn-primary next">Go on Further!</a>
+  <form id = "bathroom" method="POST" action=" {% url 'bathroom'%} ">
+    {% csrf_token %}
+    <input type="hidden">
+  </form>
+</div>
+
+{% endblock %}

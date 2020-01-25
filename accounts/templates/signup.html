@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+  *{
+    color:black !important;
+  }
+  .form-control{
+    width: 20%;
+    margin:1%;
+  }
+  .new{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  #footer{
+    position:fixed;
+    bottom0;
+  }
+</style>
+
+{% if error%}
+<h1>{{error}}</h1>
+<br>
+{%endif%}
+
+<div class="text-center container">
+<form class="form-signin new" action="{% url 'signup' %}" method="POST">
+{% csrf_token %}
+<h1 class="h3 mb-3 font-weight-normal mt-3">Please Sign Up!</h1>
+<label for="inputUsername" class="sr-only">Username</label>
+<input type="text" name="username" class="form-control" placeholder="Username">
+<label for="inputPassword" class="sr-only">Password</label>
+<input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password">
+<label for="inputPassword" class="sr-only">Confirm Password</label>
+<input type="password" id="inputPassword" class="form-control" placeholder="Confirm Password" name="confirmpassword">
+<div class="checkbox mb-3">
+</div>
+<input type="submit" name="submit" value="SignUp!" class="btn btn-primary">
+<p class="mt-5 mb-3 text-muted">&copy; 2017-2019</p>
+</form>
+</div>
+
+
+{% endblock %}

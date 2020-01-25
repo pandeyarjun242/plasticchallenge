@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+  label{
+    margin:2px;
+    font-size:20px;
+  }
+  .newForm{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+  .btn{
+    margin-bottom:15px;
+  }
+  input, textarea{display:block;width:100%;height:calc(1.5em + .75rem + 2px);padding:.375rem .75rem;font-size:1rem;font-weight:400;line-height:1.5;color:#495057;background-color:#fff;background-clip:padding-box;border:1px solid #ced4da;border-radius:.25rem;transition:border-color .15s ease-in-out,box-shadow .15s ease-in-out}
+.lh-condensed { line-height: 1.25; }
+</style>
+
+<h1 class="text-center pt-4">Lets Get Started</h1>
+<h3 class="text-center pt-4">Fill this form and Start Contributing. Be honest to yourself!</h3>
+<form class="newForm" action="{% url 'details'%}" method="POST">
+  {% csrf_token %}
+  <label for="">PET Bottles: </label>
+  <input type="text" name="petbottles" value=""><br>
+  <label for="">Plastic Bags: </label>
+  <input type="text" name="plasticbags" value=""><br>
+  <label for="">Food Wrappers: </label>
+  <input type="text" name="foodwrappers" value=""><br>
+  <label for="">Yogurt/Dairy Containers: </label>
+  <input type="text" name="yogurtcontainers" value=""><br>
+  <label for="">Detergents: </label>
+  <input type="text" name="detergents" value=""><br>
+  <label for="">Shower Gel and Shampoos: </label><br>
+  <input type="text" name="shower" value="">
+  <label for="">Toothbrushes: </label>
+  <input type="text" name="toothbrushes" value=""><br>
+  <label for="">Toothpastes: </label>
+  <input type="text" name="toothpastes" value=""><br>
+  <label for="">Plastic Cups: </label>
+  <input type="text" name="plasticCups" value=""><br>
+  <label for="">Straws: </label>
+  <input type="text" name="straws" value=""><br>
+  <label for="">Disponsable Cutlery: </label>
+  <input type="text" name="dispensableCutlery" value=""><br>
+  <label for="">Plastic Plates: </label>
+  <input type="text" name="plasticPlates" value=""><br>
+  <input type="submit" name="submit" value="Submit!" class="btn btn-primary">
+</form>
+{% endblock %}
